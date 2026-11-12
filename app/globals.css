@@ -1,0 +1,63 @@
+
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f1f3fb;
+  color: #0b1230;
+  font-family: "Poppins", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section[id] {
+  scroll-margin-top: 1rem;
+}
+
+/* DARK MODE */
+
+.dark body {
+  background: #101827;
+  color: #ffffff;
+}
+
+/* Main backgrounds */
+.dark [class*="bg-[#f1f3fb]"] {
+  background-color: #101827 !important;
+}
+
+.dark [class~="bg-white"] {
+  background-color: #182235 !important;
+}
+
+/* Text colors */
+.dark [class*="text-[#0b1230]"] {
+  color: #ffffff !important;
+}
+
+.dark [class*="text-[#4b5468]"] {
+  color: #b8c4d8 !important;
+}
+
+/* Badges and light blue backgrounds */
+.dark [class*="bg-[#dfe7fd]"] {
+  background-color: #263956 !important;
+}
+
+/* Borders */
+.dark [class*="border-[#dfe7fd]"] {
+  border-color: #34445e !important;
+}
+
+.dark [class*="border-[#0b1230]"] {
+  border-color: #8da0bd !important;
+}
+
+/* Smooth transitions */
+.dark section,
+.dark footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
