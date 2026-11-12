@@ -74,7 +74,7 @@ export default function Hero() {
         </div>
 
         {/* Portrait */}
-        <div className="pointer-events-none relative z-[2] mx-auto mt-6 w-[min(78%,420px)] rounded-t-3xl bg-[#0a1432] lg:absolute lg:bottom-0 lg:right-[6%] lg:mx-0 lg:mt-0 lg:h-[90.5%] lg:w-auto lg:rounded-none lg:bg-transparent">
+        <div className="pointer-events-none relative z-[20] mx-auto mt-6 w-[min(78%,420px)] rounded-t-3xl bg-[#0a1432] lg:absolute lg:bottom-0 lg:right-[8%] lg:mx-0 lg:mt-0 lg:h-[90.5%] lg:w-auto lg:rounded-none lg:bg-transparent">
           <Image
             src="/sameed.png"
             alt="Sameed Awais"
