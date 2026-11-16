@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCommentDots } from "react-icons/fa";
 import Navbar from "./Navbar";
 
 export default function Hero() {
@@ -45,16 +45,16 @@ export default function Hero() {
 
           <div className="mt-[clamp(1.4rem,5.3vh,3.4rem)] flex w-full flex-col gap-[clamp(.8rem,2.03vw,2.1rem)] sm:w-auto sm:flex-row">
             <a
-              href="#about"
-              className="inline-flex h-[clamp(48px,3.8vw,63px)] items-center justify-center gap-[.7em] rounded-lg bg-[#0f5cff] px-[clamp(1.2rem,1.9vw,2rem)] text-[clamp(.9rem,1.13vw,1.2rem)] font-semibold text-white shadow-[0_8px_20px_rgba(15,92,255,0.28)] transition hover:-translate-y-0.5"
+              href="#projects"
+              className="group inline-flex h-[58px] min-w-[214px] items-center justify-center gap-3 rounded-xl bg-[#1a5cff] px-7 text-base font-semibold text-white shadow-[0_8px_20px_rgba(26,92,255,0.22)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#174fe0] hover:shadow-[0_14px_28px_rgba(26,92,255,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-4 sm:h-[62px] sm:min-w-[226px] sm:text-lg"
             >
-              Explore More <FiArrowRight className="text-[1.25em]" />
+              View My Work <FiArrowRight className="text-[1.2em] transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="inline-flex h-[clamp(48px,3.8vw,63px)] items-center justify-center gap-[.7em] rounded-lg border-[1.5px] border-[#0b1230] px-[clamp(1.2rem,1.9vw,2rem)] text-[clamp(.9rem,1.13vw,1.2rem)] font-semibold transition hover:-translate-y-0.5"
+              className="inline-flex h-[58px] min-w-[238px] items-center justify-center gap-3 rounded-xl border border-[#0b1230]/15 bg-white px-6 text-base font-semibold text-[#0b1230] shadow-[0_4px_14px_rgba(10,20,50,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1a5cff]/35 hover:bg-[#f7f9ff] hover:shadow-[0_12px_24px_rgba(10,20,50,0.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-4 dark:border-white/20 dark:bg-[#111c30] dark:text-white dark:hover:bg-[#17243a] sm:h-[62px] sm:min-w-[253px] sm:text-lg"
             >
-              <FaRegCalendarAlt className="text-[1.25em]" /> Book a Meeting
+              <FaRegCommentDots className="text-[1.25em]" /> Let&apos;s Talk
             </a>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function Hero() {
         </div>
 
         {/* Portrait */}
-        <div className="pointer-events-none relative z-[20] mx-auto mt-6 w-[min(78%,420px)] rounded-t-3xl bg-[#0a1432] lg:absolute lg:bottom-0 lg:right-[8%] lg:mx-0 lg:mt-0 lg:h-[90.5%] lg:w-auto lg:rounded-none lg:bg-transparent">
+        <div className="pointer-events-none relative z-[2] mx-auto mt-6 w-[min(78%,420px)] rounded-t-3xl bg-[#0a1432] lg:absolute lg:bottom-0 lg:right-[6%] lg:mx-0 lg:mt-0 lg:h-[90.5%] lg:w-auto lg:rounded-none lg:bg-transparent">
           <Image
             src="/sameed.png"
             alt="Sameed Awais"

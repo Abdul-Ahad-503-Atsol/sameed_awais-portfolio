@@ -1,7 +1,7 @@
  "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { FaTimes, FaExternalLinkAlt } from "react-icons/fa";
+import { useMemo, useRef, useState } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Heading from "./Heading";
 
 /*
@@ -10,7 +10,7 @@ import Heading from "./Heading";
  * Add an image later by setting image: "/projects/your-image.png".
  */
 
-const projects = [
+export const projects = [
   {
     title: "MezAgent",
     category: ["AI", "SaaS"],
@@ -219,6 +219,9 @@ const projects = [
   },
 ];
 
+export const slugifyProject = (title) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 const allCategories = [
   ...new Set(projects.flatMap((project) => project.category))
 ].sort((a, b) => a.localeCompare(b));
@@ -228,83 +231,63 @@ function ProjectImage({ project, className = "" }) {
     <img
       src={project.image}
       alt={`${project.title} project preview`}
-      className={`${className} h-full w-full object-contain`}
+      className={`${className} h-full w-full object-cover`}
     />
   ) : (
-    <div className={`${className} flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#0a1432] via-[#142b55] to-[#1a5cff] p-6 text-center`}>
-      <span className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#9fc2ff]">Project preview</span>
-      <span className="max-w-md text-xl font-bold text-white sm:text-2xl">{project.title}</span>
-      <span className="mt-3 text-xs text-blue-100/80">Image coming soon</span>
-    </div>
+    <div aria-hidden="true" className={`${className} h-full w-full bg-[linear-gradient(125deg,#dfe7fd_0%,#8eaeff_38%,#1a5cff_70%,#0a1432_100%)]`} />
   );
 }
 
-export default function Projects() {
+export default function Projects({ showAll = false }) {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [openProject, setOpenProject] = useState(null);
   const categoryRailRef = useRef(null);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
     return projects.filter((project) => project.category.includes(activeFilter));
   }, [activeFilter]);
-
-  useEffect(() => {
-    if (!openProject) return undefined;
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") setOpenProject(null);
-    };
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [openProject]);
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
 
   return (
-    <section id="projects" className="mx-auto max-w-7xl px-5 py-20 lg:py-28">
+    <section id="projects" className={`mx-auto ${showAll ? "max-w-7xl" : "max-w-5xl"} px-5 py-20 lg:py-28`}>
       <Heading tag="Projects">
-        Selected <span className="text-[#1a5cff]">work</span>
+        {showAll ? <>All <span className="text-[#1a5cff]">projects</span></> : <>Selected <span className="text-[#1a5cff]">work</span></>}
       </Heading>
 
       <p className="mb-7 max-w-2xl text-sm leading-relaxed text-[#64748b] sm:text-base">
         A selection of digital products, platforms, and software systems across multiple industries.
       </p>
 
-      <div className="mb-9 flex items-center gap-2">
+      <div className="mb-9 rounded-2xl border border-[#e3eaf5] bg-white/80 p-2 shadow-[0_8px_28px_rgba(20,30,80,0.06)]">
+        <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => categoryRailRef.current?.scrollBy({ left: -260, behavior: "smooth" })}
           aria-label="Scroll categories left"
-          className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#d6deeb] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff] hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#e3eaf5] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff]/30 hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
         >
           ‹
         </button>
 
         <div
           ref={categoryRailRef}
-          className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto scroll-smooth py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto scroll-smooth px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {["All", ...allCategories].map((category) => {
             const isActive = activeFilter === category;
-            const count = category === "All"
-              ? projects.length
-              : projects.filter((project) => project.category.includes(category)).length;
             return (
               <button
                 key={category}
                 type="button"
                 onClick={() => setActiveFilter(category)}
                 aria-pressed={isActive}
-                className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 ${
+                className={`group inline-flex shrink-0 items-center whitespace-nowrap rounded-xl border px-4 py-2.5 text-xs font-semibold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 ${
                   isActive
-                    ? "border-[#1a5cff] bg-[#1a5cff] text-white shadow-sm"
-                    : "border-[#d6deeb] bg-white text-[#526078] hover:border-[#1a5cff] hover:text-[#1a5cff]"
+                    ? "border-transparent bg-[#1a5cff] text-white shadow-[0_5px_14px_rgba(26,92,255,0.24)]"
+                    : "border-transparent bg-[#f3f6fc] text-[#526078] hover:border-[#d9e4fb] hover:bg-[#eaf0ff] hover:text-[#164ed1]"
                 }`}
               >
-                {category} <span className={isActive ? "text-blue-100" : "text-[#94a3b8]"}>({count})</span>
+                {category}
               </button>
             );
           })}
@@ -314,168 +297,82 @@ export default function Projects() {
           type="button"
           onClick={() => categoryRailRef.current?.scrollBy({ left: 260, behavior: "smooth" })}
           aria-label="Scroll categories right"
-          className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#d6deeb] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff] hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#e3eaf5] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff]/30 hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
         >
           ›
         </button>
+        </div>
       </div>
 
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <p className="text-sm font-medium text-[#64748b]">
-          Showing <span className="font-bold text-[#101827]">{filteredProjects.length}</span> {filteredProjects.length === 1 ? "project" : "projects"}
-        </p>
-        {activeFilter !== "All" && (
-          <button type="button" onClick={() => setActiveFilter("All")} className="text-sm font-semibold text-[#1a5cff] hover:underline">
-            Clear filter
-          </button>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredProjects.map((project) => (
+      <div className={`grid grid-cols-1 items-stretch gap-7 sm:grid-cols-2 ${showAll ? "xl:grid-cols-3" : "xl:grid-cols-2"}`}>
+        {displayedProjects.map((project) => (
           <article
             key={project.title}
-            className="group flex h-full min-w-0 flex-col overflow-hidden rounded-3xl border border-[#e8edf5] bg-white shadow-[0_6px_24px_rgba(20,30,80,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(20,30,80,0.12)]"
+            className="group flex h-full min-w-0 flex-col bg-transparent"
           >
-            <button
-              type="button"
-              onClick={() => setOpenProject(project)}
-              aria-label={`View ${project.title} project details`}
-              className="block w-full text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#1a5cff]"
-            >
-              <div className="aspect-video w-full overflow-hidden bg-[#0a1432]">
-                <ProjectImage project={project} className="transition duration-500 group-hover:scale-[1.02]" />
-              </div>
-            </button>
+            <div className="relative aspect-[1.62] w-full overflow-hidden rounded-[1.35rem] bg-[#0a1432] shadow-[0_8px_24px_rgba(10,20,50,0.12)]">
+              <a
+                href={`/projects/${slugifyProject(project.title)}`}
+                aria-label={`View ${project.title} project details`}
+                className="absolute inset-0 z-0 block w-full text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#1a5cff]"
+              >
+                <ProjectImage project={project} className="transition duration-500 group-hover:scale-[1.035]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06172b]/95 via-[#06172b]/5 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#8eb3ff] sm:text-xs">
+                    {project.category.join(" / ")}
+                  </p>
+                  <h3 className="max-w-[88%] text-lg font-bold leading-snug sm:text-xl lg:text-2xl">
+                    {project.title}
+                  </h3>
+                </div>
+              </a>
+              {project.live ? (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${project.title}`}
+                  className="absolute bottom-5 right-5 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 sm:bottom-6 sm:right-6"
+                >
+                    <FaExternalLinkAlt className="text-sm" />
+                </a>
+              ) : (
+                <a
+                  href={`/projects/${slugifyProject(project.title)}`}
+                  aria-label={`View ${project.title} project details`}
+                  className="absolute bottom-5 right-5 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 sm:bottom-6 sm:right-6"
+                >
+                  <FaExternalLinkAlt className="text-sm" />
+                </a>
+              )}
+            </div>
 
-            <div className="flex flex-1 flex-col p-5 sm:p-6">
-              <div className="flex flex-wrap gap-1.5">
-                {project.category.slice(0, 2).map((category) => (
-                  <span key={category} className="rounded-full bg-[#eaf0ff] px-2.5 py-1 text-[10px] font-bold text-[#214b9b]">
-                    {category}
-                  </span>
-                ))}
-                {project.category.length > 2 && (
-                  <span className="rounded-full bg-[#f1f5f9] px-2.5 py-1 text-[10px] font-semibold text-[#64748b]">
-                    +{project.category.length - 2}
-                  </span>
-                )}
-              </div>
-
-              <h3 className="mt-3 min-h-[3.5rem] text-lg font-bold leading-snug text-[#101827] sm:text-xl">
-                {project.title}
-              </h3>
-
-              <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-[#526078]">
+            <div className="flex flex-1 flex-col pt-3 sm:pt-4">
+              <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-[#526078] sm:text-[15px]">
                 {project.description}
               </p>
 
-              <div className="mt-5 flex h-10 w-full items-center justify-between gap-2">
-                {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(event) => event.stopPropagation()}
-                    className="inline-flex h-9 min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap leading-none rounded-lg bg-gradient-to-br from-[#0a1432] via-[#142b55] to-[#1a5cff] px-2 text-[11px] font-semibold text-white transition duration-200 hover:-translate-y-0.5 sm:px-2.5 sm:text-xs"
-                  >
-                    Visit
-                  </a>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setOpenProject(project)}
-                    className="inline-flex h-9 min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap leading-none rounded-lg bg-gradient-to-br from-[#0a1432] via-[#142b55] to-[#1a5cff] px-2 text-[11px] font-semibold text-white transition duration-200 hover:-translate-y-0.5 sm:px-2.5 sm:text-xs"
-                  >
-                    Visit
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setOpenProject(project)}
-                  className="inline-flex h-10 shrink-0 items-center rounded-lg px-2 text-sm font-semibold text-[#0f5cff] transition hover:bg-[#eef4ff] hover:underline sm:px-3"
-                >
-                  See more
-                </button>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {project.tech.slice(0, 5).map((technology) => (
+                  <span key={technology} className="rounded-full border border-[#dce3ed] bg-white px-2.5 py-1 text-[10px] font-medium text-[#334155] sm:text-[11px]">
+                    {technology}
+                  </span>
+                ))}
               </div>
             </div>
           </article>
         ))}
       </div>
 
-      {openProject && (
-        <div
-          className="fixed inset-0 z-[100] grid place-items-center bg-[#071126]/85 p-3 backdrop-blur-sm sm:p-5"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setOpenProject(null);
-          }}
-          role="presentation"
-        >
-          <div
-            className="relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${openProject.title} project details`}
-          >
-            <button
-              type="button"
-              aria-label="Close project details"
-              onClick={() => setOpenProject(null)}
-              className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/95 text-[#101827] shadow-lg transition hover:bg-[#eaf0ff]"
-            >
-              <FaTimes />
-            </button>
-
-            <div className="overflow-y-auto p-5 sm:p-6 lg:p-7">
-              <div className="flex flex-wrap gap-2">
-                {openProject.category.map((category) => (
-                  <span key={category} className="rounded-full bg-[#eaf0ff] px-3 py-1 text-xs font-semibold text-[#214b9b]">
-                    {category}
-                  </span>
-                ))}
-              </div>
-
-              <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-[#101827] sm:text-3xl">
-                {openProject.title}
-              </h3>
-
-              <h4 className="mt-6 font-bold text-[#101827]">Project overview</h4>
-              <p className="mt-2 whitespace-pre-line text-sm leading-7 text-[#526078] sm:text-base">
-                {openProject.description}
-              </p>
-
-              <h4 className="mt-7 font-bold text-[#101827]">Key results</h4>
-              <ul className="mt-3 space-y-3">
-                {openProject.highlights.map((highlight, index) => (
-                  <li key={highlight} className="flex gap-3 text-sm leading-relaxed text-[#526078] sm:text-base">
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#eaf0ff] text-xs font-bold text-[#1a5cff]">
-                      {index + 1}
-                    </span>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {openProject.tech.length > 0 ? (
-                <>
-                  <h4 className="mt-7 font-bold text-[#101827]">Technologies used</h4>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {openProject.tech.map((technology) => (
-                      <span key={technology} className="rounded-lg border border-[#dce5f4] bg-[#f7f9fc] px-3 py-2 text-xs font-medium text-[#334155] sm:text-sm">
-                        {technology}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <p className="mt-7 text-sm italic text-[#94a3b8]">Technology details were not provided.</p>
-              )}
-
-
-            </div>
-          </div>
+      {!showAll && projects.length > 4 && (
+        <div className="mt-10 flex justify-center">
+          <a href="/projects" className="inline-flex items-center rounded-xl bg-[#0a1432] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_rgba(10,20,50,0.2)] transition hover:-translate-y-0.5 hover:bg-[#142b55]">
+            See more projects
+          </a>
         </div>
       )}
+
     </section>
   );
 }

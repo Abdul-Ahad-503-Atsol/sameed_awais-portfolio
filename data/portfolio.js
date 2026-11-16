@@ -77,14 +77,46 @@ export const experience = [
 ];
 
 export const certifications = [
-  { name: "Certification Name", issuer: "Issuer", year: "2024", link: "#" },
-  { name: "Certification Name", issuer: "Issuer", year: "2023", link: "#" },
-  { name: "Certification Name", issuer: "Issuer", year: "2023", link: "#" },
-  { name: "Certification Name", issuer: "Issuer", year: "2022", link: "#" },
+  {
+    name: "Best Developer of the Year",
+    issuer: "Alchemative",
+    date: "Jan 2022",
+    associatedWith: "Alchemative",
+  },
+];
+
+export const testimonials = [
+  {
+    quote:
+      "Working with Sameed on the Hire A Fractional software application was an absolute pleasure. From day one, the experience was seamless, with excellent communication, quick responses, and a genuine commitment to our success. Sameed's innovative approach and attention to detail transformed our vision into reality. I couldn't recommend Sameed enough. Truly one of the best professionals to work with.",
+    name: "Sue Mysko",
+    role: "Chief Marketing Officer",
+    company: "Hire A Fractional",
+    project: "Hire A Fractional Platform",
+    date: "January 2, 2024",
+  },
+  {
+    quote:
+      "Working with Sameed was an absolute game-changer for our business. Not only did he deliver a top-notch product, but he also made the entire process feel effortless. Sameed doesn't just provide services; he becomes a true partner in your success.",
+    name: "India Brown",
+    role: "Chief Marketing Manager",
+    company: "",
+    project: "",
+    date: "March 12, 2024",
+  },
+  {
+    quote:
+      "Sameed's website development services exceeded my expectations. He understood my vision and captured the essence of my brand perfectly. If you're looking for a professional, high-quality website that stands out, I highly recommend Sameed.",
+    name: "Roy J",
+    role: "CEO",
+    company: "Elewa",
+    project: "Elewa Talent Hiring Platform",
+    date: "May 3, 2024",
+  },
 ];
 
 export const contact = {
-  email: "you@example.com",
-  phone: "+00 000 0000000",
-  location: "Your City, Country",
+  email: "sameedawais@gmail.com",
+  phone: "+923067021504",
+  location: "Lahore, Pakistan",
 };

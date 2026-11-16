@@ -4,33 +4,31 @@ import { useState } from "react";
 import Image from "next/image";
 import {
   FaCertificate,
+  FaTrophy,
   FaArrowUp,
-  FaDesktop,
-  FaServer,
-  FaMicrochip,
-  FaDatabase,
-  FaCloud,
-  FaLink,
-  FaChevronRight,
 } from "react-icons/fa";
 import Heading from "./Heading";
 import { certifications } from "../data/portfolio";
 
 const wrap = "mx-auto max-w-6xl px-5 py-20 lg:py-28";
 
-export function About() {
+export function About({ showPortrait = false, showStats = true }) {
   return (
     <section id="about" className={wrap}>
-      <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="mx-auto w-full max-w-sm overflow-hidden rounded-[32px] bg-[#0a1432] pt-8">
-          <Image
-            src="/sameed.png"
-            alt="Sameed Awais"
-            width={1086}
-            height={1448}
-            className="h-auto w-full"
-          />
-        </div>
+      <div className={`grid items-start gap-10 lg:gap-14 ${showPortrait ? "lg:grid-cols-[minmax(260px,0.72fr)_minmax(0,1.28fr)]" : "lg:grid-cols-[minmax(0,1.3fr)_minmax(300px,0.7fr)]"}`}>
+        {showPortrait && (
+          <div className="relative mx-auto h-[420px] w-full max-w-[360px] overflow-hidden rounded-[2rem] bg-[#0a1432] shadow-[0_18px_45px_rgba(10,20,50,0.16)] sm:h-[500px] lg:sticky lg:top-28 lg:mx-0">
+            <Image
+              src="/sameed.png"
+              alt="Sameed Awais"
+              fill
+              priority
+              sizes="(min-width: 1024px) 360px, 100vw"
+              className="object-contain object-bottom"
+            />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a1432]/35 to-transparent" />
+          </div>
+        )}
 
         <div>
           <Heading tag="About me">
@@ -38,7 +36,7 @@ export function About() {
             <span className="text-[#1a5cff]">works</span>
           </Heading>
 
-          <div className="space-y-4 text-lg leading-relaxed text-[#4b5468]">
+          <div className="max-w-3xl space-y-4 text-base leading-relaxed text-[#4b5468] sm:text-lg">
             <p>
               I'm Sameed Awais, a technology professional with 10+ years of
               experience in software engineering, system architecture, and
@@ -61,29 +59,62 @@ export function About() {
               boundaries of what's possible through technology.
             </p>
           </div>
-
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { value: "10+", label: "Years of experience" },
-              { value: "70+", label: "Projects delivered" },
-              { value: "100+", label: "Happy clients" },
-              { value: "20+", label: "Teams led" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl bg-white p-5 shadow-[0_6px_24px_rgba(20,30,80,0.06)]"
-              >
-                <div className="text-3xl font-extrabold text-[#1a5cff]">
-                  {s.value}
-                </div>
-                <div className="mt-1 text-sm font-medium text-[#4b5468]">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
+
+        {!showPortrait && <aside className="relative isolate overflow-hidden rounded-3xl bg-[#0a1432] p-7 text-white shadow-[0_14px_38px_rgba(10,20,50,0.14)] sm:p-8">
+          <div aria-hidden="true" className="absolute -right-14 -top-16 -z-10 h-48 w-48 rounded-full border-[24px] border-[#1a5cff]/10" />
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8eb3ff]">What I bring</p>
+          <h3 className="mt-3 text-2xl font-bold leading-snug">Thoughtful engineering, end to end.</h3>
+          <ul className="mt-6 space-y-4">
+            {[
+              "Scalable software and product development",
+              "Practical AI and machine learning solutions",
+              "System architecture and technical leadership",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#c5d2e8]">
+                <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#4d83ff]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </aside>}
       </div>
+
+      {showPortrait && (
+        <aside className="relative isolate mt-10 overflow-hidden rounded-3xl bg-[#0a1432] p-7 text-white shadow-[0_14px_38px_rgba(10,20,50,0.14)] sm:p-8">
+          <div aria-hidden="true" className="absolute -right-14 -top-16 -z-10 h-48 w-48 rounded-full border-[24px] border-[#1a5cff]/10" />
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8eb3ff]">What I bring</p>
+          <h3 className="mt-3 text-2xl font-bold leading-snug">Thoughtful engineering, end to end.</h3>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+            {[
+              "Scalable software and product development",
+              "Practical AI and machine learning solutions",
+              "System architecture and technical leadership",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-[#c5d2e8]">
+                <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#4d83ff]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+
+      {showStats && (
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {[
+            { value: "10+", label: "Years of experience" },
+            { value: "70+", label: "Projects delivered" },
+            { value: "100+", label: "Happy clients" },
+            { value: "20+", label: "Teams led" },
+          ].map((s) => (
+            <div key={s.label} className="rounded-2xl border border-[#dfe7fd] bg-white p-5 shadow-[0_6px_24px_rgba(20,30,80,0.06)]">
+              <div className="text-3xl font-extrabold text-[#1a5cff]">{s.value}</div>
+              <div className="mt-1 text-sm font-medium text-[#4b5468]">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -104,14 +135,12 @@ export function Skills() {
       title: "Frontend Development",
       description:
         "Building modern, responsive, and high-performance user interfaces.",
-      icon: FaDesktop,
       items: ["React.js", "Next.js", "Tailwind CSS"],
     },
     {
       title: "Backend Development",
       description:
         "Developing secure, scalable, and reliable server-side applications and APIs.",
-      icon: FaServer,
       items: [
         "Python",
         "JavaScript",
@@ -129,7 +158,6 @@ export function Skills() {
       title: "AI & LLM Engineering",
       description:
         "Creating intelligent applications, AI agents, and LLM-powered solutions.",
-      icon: FaMicrochip,
       items: [
         "OpenAI API",
         "Anthropic Claude API",
@@ -152,14 +180,12 @@ export function Skills() {
       title: "Database & Data",
       description:
         "Structuring, managing, and optimizing data for dependable applications.",
-      icon: FaDatabase,
       items: ["PostgreSQL", "MongoDB", "Redis", "Database Design"],
     },
     {
       title: "Cloud & DevOps",
       description:
         "Deploying, scaling, and maintaining applications with modern cloud and DevOps practices.",
-      icon: FaCloud,
       items: [
         "Docker",
         "AWS",
@@ -175,7 +201,6 @@ export function Skills() {
       title: "Integrations & Automation",
       description:
         "Connecting platforms and automating workflows to reduce manual work.",
-      icon: FaLink,
       items: [
         "API Integration",
         "Stripe Integration",
@@ -187,23 +212,21 @@ export function Skills() {
   ];
 
   const activeCategory = skillCategories[selectedCategory];
-  const ActiveIcon = activeCategory.icon;
 
   return (
     <section
       id="skills"
-      className="w-full bg-[#101827] py-12 sm:py-16 lg:py-20"
+      className="w-full bg-[#f1f3fb] py-12 transition-colors duration-300 dark:bg-[#101827] sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-6xl px-5">
-        <h2 className="mb-8 text-xl font-bold text-white md:text-2xl">
+        <h2 className="mb-8 text-xl font-bold text-[#0b1230] md:text-2xl dark:text-white">
           Technical Expertise
         </h2>
 
-        <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[minmax(260px,0.36fr)_minmax(0,1fr)] lg:gap-7">
+        <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-[minmax(240px,0.36fr)_minmax(0,1fr)] lg:gap-7">
           {/* CATEGORY NAVIGATION */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             {skillCategories.map((category, index) => {
-              const CategoryIcon = category.icon;
               const isActive = selectedCategory === index;
 
               return (
@@ -212,35 +235,18 @@ export function Skills() {
                   type="button"
                   onClick={() => setSelectedCategory(index)}
                   aria-pressed={isActive}
-                  className={`group relative flex min-h-[70px] w-full items-center gap-4 rounded-xl border px-5 py-4 text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-offset-2 focus:ring-offset-[#101827] sm:min-h-[72px] ${
+                  className={`group flex min-h-[52px] w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 focus:ring-offset-[#f1f3fb] dark:focus:ring-offset-[#101827] ${
                     isActive
-                      ? "border-[#3B82F6] bg-gradient-to-r from-[#173B70] to-[#1C3558] text-white shadow-[0_0_18px_rgba(37,99,235,0.18)]"
-                      : "border-[#263B59] bg-[#1C2A40] text-white hover:border-[#3B82F6]/60 hover:bg-[#223652]"
+                      ? "bg-white text-[#0b1230] shadow-[0_8px_22px_rgba(20,40,90,0.10)] ring-1 ring-inset ring-[#1a5cff]/30 dark:bg-[#1C2A40] dark:text-white dark:shadow-[0_8px_22px_rgba(0,0,0,0.14)] dark:ring-[#3B82F6]/35"
+                      : "text-[#526078] hover:bg-white/70 hover:text-[#0b1230] dark:text-[#B8C4D8] dark:hover:bg-[#17263B] dark:hover:text-white"
                   }`}
                   aria-label={`Show ${category.title} skills`}
                 >
-                  <CategoryIcon
-                    className={`shrink-0 text-xl transition-colors ${
-                      isActive ? "text-[#60A5FA]" : "text-[#DCE7F7]"
-                    }`}
-                  />
                   <span className="flex-1 text-sm font-semibold sm:text-base">
                     {category.title}
                   </span>
-                  <FaChevronRight
-                    className={`shrink-0 text-sm transition-transform duration-300 ${
-                      isActive
-                        ? "translate-x-0.5 text-[#60A5FA]"
-                        : "text-[#DCE7F7] group-hover:translate-x-1"
-                    }`}
-                  />
-
-                  {/* POINTER CONNECTING THE SELECTED CATEGORY TO THE PANEL */}
                   {isActive && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute -right-[15px] top-1/2 z-20 hidden h-0 w-0 -translate-y-1/2 border-y-[12px] border-y-transparent border-l-[15px] border-l-[#3B82F6] lg:block"
-                    />
+                    <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-[#1a5cff] shadow-[0_0_12px_rgba(26,92,255,0.35)] dark:bg-[#60A5FA] dark:shadow-[0_0_12px_rgba(96,165,250,0.5)]" />
                   )}
                 </button>
               );
@@ -249,29 +255,23 @@ export function Skills() {
 
           {/* SELECTED CATEGORY DETAILS — ALWAYS OPEN, NO MODAL */}
           <div
-            className="min-h-[360px] rounded-2xl border border-[#2B4566] bg-gradient-to-br from-[#17263B] to-[#132137] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.12)] sm:p-8 lg:min-h-full"
+            className="flex h-[560px] flex-col overflow-hidden rounded-3xl border border-[#dfe7fd] bg-gradient-to-br from-white via-white to-[#edf3ff] p-7 shadow-[0_12px_34px_rgba(20,40,90,0.08)] transition-colors duration-300 sm:h-[480px] sm:p-10 lg:h-[352px] dark:border-[#2B4566] dark:from-[#17263B] dark:via-[#15243A] dark:to-[#101D31] dark:shadow-[0_12px_34px_rgba(0,0,0,0.14)]"
             aria-live="polite"
           >
-            <div className="flex items-center gap-4">
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-[#173B70] text-2xl text-[#60A5FA]">
-                <ActiveIcon />
-              </div>
-              <h3 className="text-xl font-bold text-white sm:text-2xl">
-                {activeCategory.title}
-              </h3>
-            </div>
-
-            <p className="mt-4 text-base leading-relaxed text-[#B8C4D8] sm:text-lg">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a5cff] dark:text-[#60A5FA]">
+              Category · {String(selectedCategory + 1).padStart(2, "0")} / {String(skillCategories.length).padStart(2, "0")}
+            </p>
+            <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0b1230] sm:text-3xl dark:text-white">
+              {activeCategory.title}
+            </h3>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#526078] sm:text-lg dark:text-[#B8C4D8]">
               {activeCategory.description}
             </p>
-
-            <div className="my-6 border-t border-[#2B4566]" />
-
-            <div className="flex flex-wrap gap-3">
+            <div className="mt-7 flex min-h-0 flex-1 flex-wrap content-start gap-2.5 overflow-y-auto pr-2">
               {activeCategory.items.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-[#2563EB]/20 bg-[#173B70]/70 px-4 py-2 text-sm font-semibold text-[#60A5FA] transition duration-200 hover:border-[#60A5FA]/60 hover:bg-[#1D477F] hover:text-white"
+                  className="rounded-full border border-[#d7e3ff] bg-[#eaf0ff] px-4 py-2 text-xs font-semibold text-[#164ed1] transition duration-200 hover:border-[#1a5cff] hover:bg-[#dfe7fd] hover:text-[#0b1230] sm:text-sm dark:border-[#2B4566] dark:bg-[#1C2A40] dark:text-[#DCE7F7] dark:hover:border-[#3B82F6] dark:hover:bg-[#173B70] dark:hover:text-white"
                 >
                   {skill}
                 </span>
@@ -402,23 +402,34 @@ export function Experience() {
           <span className="text-[#1a5cff]">credentials</span>
         </Heading>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {certifications.map((c, i) => (
-            <a
-              key={i}
-              href={c.link}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-3xl bg-white p-6 shadow-[0_6px_24px_rgba(20,30,80,0.06)] transition hover:-translate-y-1"
+        <div className="grid gap-5">
+          {certifications.map((c) => (
+            <article
+              key={c.name}
+              className="relative isolate mx-auto w-full max-w-4xl overflow-hidden rounded-[28px] border border-[#dce7ff] bg-gradient-to-r from-white via-white to-[#edf3ff] p-6 shadow-[0_16px_44px_rgba(20,50,120,0.1)] sm:p-9"
             >
-              <FaCertificate className="text-3xl text-[#1a5cff]" />
-
-              <h3 className="mt-4 font-bold">{c.name}</h3>
-
-              <p className="mt-1 text-sm text-[#4b5468]">
-                {c.issuer} &middot; {c.year}
-              </p>
-            </a>
+              <div aria-hidden="true" className="absolute -right-16 -top-20 -z-10 h-56 w-56 rounded-full border-[28px] border-[#1a5cff]/[0.04]" />
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#1a5cff] to-[#0a1432] text-2xl text-white shadow-[0_8px_20px_rgba(26,92,255,0.24)] sm:h-20 sm:w-20 sm:text-3xl">
+                  <FaTrophy aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-[#eaf0ff] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1a5cff]">Award</span>
+                    <span className="text-sm font-semibold text-[#64748b]">{c.date}</span>
+                  </div>
+                  <h3 className="mt-3 text-xl font-extrabold leading-snug text-[#0b1230] sm:text-2xl">{c.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#526078]">
+                    Issued by <strong className="font-semibold text-[#263957]">{c.issuer}</strong>
+                    <span className="mx-2 text-[#9aa8bc]">·</span>
+                    Associated with <strong className="font-semibold text-[#263957]">{c.associatedWith}</strong>
+                  </p>
+                </div>
+                <div className="hidden shrink-0 items-center gap-2 rounded-full border border-[#dce7ff] bg-white/80 px-4 py-2 text-xs font-semibold text-[#1a5cff] sm:inline-flex">
+                  <FaCertificate aria-hidden="true" /> Recognition
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -434,9 +445,9 @@ export function Footer() {
       </p>
 
       <a
-        href="#home"
+        href="/#home"
         aria-label="Back to top"
-        className="grid h-11 w-11 place-items-center rounded-full bg-[#0f5cff] text-white"
+        className="grid h-11 w-11 place-items-center rounded-full bg-[#1a5cff] text-white"
       >
         <FaArrowUp />
       </a>
