@@ -61,7 +61,7 @@ export function About({ showPortrait = false, showStats = true }) {
           </div>
         </div>
 
-        {!showPortrait && <aside className="relative isolate overflow-hidden rounded-3xl bg-[#0a1432] p-7 text-white shadow-[0_14px_38px_rgba(10,20,50,0.14)] sm:p-8">
+        {!showPortrait && <aside className="relative isolate overflow-hidden rounded-3xl bg-[#0a1432] p-7 mt-12 text-white shadow-[0_14px_38px_rgba(10,20,50,0.14)] sm:p-8">
           <div aria-hidden="true" className="absolute -right-14 -top-16 -z-10 h-48 w-48 rounded-full border-[24px] border-[#1a5cff]/10" />
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8eb3ff]">What I bring</p>
           <h3 className="mt-3 text-2xl font-bold leading-snug">Thoughtful engineering, end to end.</h3>
