@@ -45,7 +45,7 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 lg:pb-24">
+      <section className="mx-auto max-w-[1400px] px-5 pb-16 sm:px-8 lg:pb-24">
         <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-[#e5eaf2] bg-[#0a1432] shadow-[0_16px_48px_rgba(10,20,50,0.16)]">
           {project.image ? (
             <img src={project.image} alt={`${project.title} preview`} className="aspect-[1.9] w-full object-cover" />

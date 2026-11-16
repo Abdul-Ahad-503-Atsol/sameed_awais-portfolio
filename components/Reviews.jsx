@@ -4,7 +4,7 @@ import { testimonials } from "../data/portfolio";
 export default function Reviews() {
   return (
     <section id="reviews" className="w-full bg-white py-10 lg:py-12">
-      <div className="mx-auto max-w-5xl px-5">
+      <div className="mx-auto max-w-[1400px] px-5">
         <div className="grid items-end gap-5 md:grid-cols-[minmax(0,1fr)_auto]">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[#dfe7fd] bg-[#dfe7fd] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1a5cff]">

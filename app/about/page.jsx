@@ -41,7 +41,7 @@ export default function AboutPage() {
 
       <About showPortrait />
 
-      <section className="mx-auto max-w-6xl px-5 pb-20 sm:px-8 lg:pb-28">
+      <section className="mx-auto max-w-[1400px] px-5 pb-20 sm:px-8 lg:pb-28">
         <Heading tag="How I work">
           More than <span className="text-[#1a5cff]">writing code</span>
         </Heading>

@@ -23,7 +23,7 @@ export default function BlogsPage() {
       </section>
 
       <section className="min-h-[45vh] bg-white px-6 py-16 sm:px-10 lg:px-[12%] lg:py-24">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-[1400px]">
           <h2 className="text-3xl font-bold sm:text-4xl">Latest articles</h2>
           <div className="mt-8 rounded-3xl border border-[#dfe7fd] bg-white p-8 shadow-[0_12px_36px_rgba(20,30,80,0.08)] sm:p-12">
             <h3 className="text-2xl font-bold">New articles are on the way</h3>

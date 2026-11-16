@@ -12,6 +12,11 @@ export default function Navbar() {
   const [active, setActive] = useState("Home");
   const [theme, setTheme] = useState("light");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const savedTheme = document.documentElement.classList.contains("dark")
@@ -143,5 +148,5 @@ export default function Navbar() {
     </header>
   );
 
-  return shouldFloat || isSecondaryPage ? createPortal(header, document.body) : header;
+  return mounted && (shouldFloat || isSecondaryPage) ? createPortal(header, document.body) : header;
 }

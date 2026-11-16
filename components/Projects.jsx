@@ -235,7 +235,7 @@ export default function Projects({ showAll = false }) {
   const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
-    <section id="projects" className={`mx-auto ${showAll ? "max-w-7xl" : "max-w-5xl"} px-5 py-20 lg:py-28`}>
+    <section id="projects" className="mx-auto max-w-[1400px] px-5 py-20 lg:py-28">
       <Heading tag="Projects">
         {showAll ? <>All <span className="text-[#1a5cff]">projects</span></> : <>Selected <span className="text-[#1a5cff]">work</span></>}
       </Heading>

@@ -56,7 +56,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="mx-2 rounded-[clamp(20px,2.2vw,36px)] bg-[#0a1432] lg:mx-4">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2 lg:py-28">
+      <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 lg:grid-cols-2 lg:py-28">
         <div>
           <Heading tag="Contact" dark>
             Let&apos;s work <span className="text-[#1a5cff]">together</span>

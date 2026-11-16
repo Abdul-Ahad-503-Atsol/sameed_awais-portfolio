@@ -10,7 +10,7 @@ import {
 import Heading from "./Heading";
 import { certifications } from "../data/portfolio";
 
-const wrap = "mx-auto max-w-6xl px-5 py-20 lg:py-28";
+const wrap = "mx-auto max-w-[1400px] px-5 py-20 lg:py-28";
 
 export function About({ showPortrait = false, showStats = true }) {
   return (
@@ -218,7 +218,7 @@ export function Skills() {
       id="skills"
       className="w-full bg-[#f1f3fb] py-12 transition-colors duration-300 dark:bg-[#101827] sm:py-16 lg:py-20"
     >
-      <div className="mx-auto max-w-6xl px-5">
+      <div className="mx-auto max-w-[1400px] px-5">
         <h2 className="mb-8 text-xl font-bold text-[#0b1230] md:text-2xl dark:text-white">
           Technical Expertise
         </h2>
