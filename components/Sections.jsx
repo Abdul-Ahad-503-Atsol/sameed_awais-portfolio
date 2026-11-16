@@ -253,7 +253,7 @@ export function Skills() {
             })}
           </div>
 
-          {/* SELECTED CATEGORY DETAILS — ALWAYS OPEN, NO MODAL */}
+          {/* SELECTED CATEGORY DETAILS, ALWAYS OPEN, NO MODAL */}
           <div
             className="flex h-[560px] flex-col overflow-hidden rounded-3xl border border-[#dfe7fd] bg-gradient-to-br from-white via-white to-[#edf3ff] p-7 shadow-[0_12px_34px_rgba(20,40,90,0.08)] sm:h-[480px] sm:p-10 lg:h-[352px]"
             aria-live="polite"

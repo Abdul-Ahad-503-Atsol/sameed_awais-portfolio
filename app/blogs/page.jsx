@@ -1,5 +1,28 @@
+import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import PageHero from "../../components/PageHero";
 import { Footer } from "../../components/Sections";
+import { posts, formatPostDate } from "../../data/blog";
+
+export const metadata = {
+  title: "Blogs | Sameed Awais",
+  description:
+    "Practical articles on AI engineering, LLM systems, backend architecture, and building production software.",
+  keywords: ["AI engineering", "LLM", "RAG", "LangGraph", "Django", "system design"],
+  alternates: { canonical: "/blogs" },
+  openGraph: {
+    type: "website",
+    url: "/blogs",
+    title: "Blogs | Sameed Awais",
+    description:
+      "Practical articles on AI engineering, LLM systems, backend architecture, and building production software.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blogs | Sameed Awais",
+    description:
+      "Practical articles on AI engineering, LLM systems, backend architecture, and building production software.",
+  },
+};
 
 const journalTopics = ["Engineering deep dives", "AI/ML and systems", "Product lessons"];
 
@@ -26,7 +49,7 @@ export default function BlogsPage() {
             </a>
           </>
         }
-        meta={["Engineering", "AI/ML", "System design", "New posts soon"]}
+        meta={["Engineering", "AI/ML", "System design"]}
       >
         <div className="relative mx-auto w-full max-w-[380px]">
           <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-[#1a5cff]/20 blur-2xl" />
@@ -46,25 +69,71 @@ export default function BlogsPage() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 border-t border-[#dfe7fd] pt-4 text-xs font-semibold text-[#1a5cff]">
-              New articles are on the way
-            </p>
+            <a
+              href={`/blogs/${posts[0].slug}`}
+              className="mt-6 inline-flex items-center gap-2 border-t border-[#dfe7fd] pt-4 text-xs font-semibold text-[#1a5cff] transition hover:text-[#164ed1]"
+            >
+              Read the latest article <FiArrowRight aria-hidden="true" />
+            </a>
           </div>
         </div>
       </PageHero>
 
-      <section className="min-h-[45vh] bg-white px-6 py-16 sm:px-10 lg:px-[12%] lg:py-24">
-        <div className="mx-auto max-w-[1400px]">
-          <h2 className="text-3xl font-bold sm:text-4xl">Latest articles</h2>
-          <div className="mt-8 rounded-3xl border border-[#dfe7fd] bg-white p-8 shadow-[0_12px_36px_rgba(20,30,80,0.08)] sm:p-12">
-            <h3 className="text-2xl font-bold">New articles are on the way</h3>
-            <p className="mt-3 max-w-xl leading-relaxed text-[#4b5468]">
-              I’m putting together practical notes and lessons from my work. Check back soon for the first post.
-            </p>
-            <a href="/#home" className="mt-7 inline-flex rounded-lg bg-[#1a5cff] px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5">
-              Back to portfolio
-            </a>
+      <section className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#dfe7fd] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0b1230]">
+              <span className="h-2 w-2 rounded-full bg-[#1a5cff]" />
+              Latest articles
+            </span>
+            <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.03em] text-[#0b1230] sm:text-4xl">
+              Notes from building <span className="text-[#1a5cff]">AI systems</span>
+            </h2>
           </div>
+          <p className="max-w-md text-sm leading-relaxed text-[#526078]">
+            Practical lessons on retrieval, agents, backend architecture, and shipping AI products that hold up in production.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {posts.map((post) => (
+            <article
+              key={post.slug}
+              className="group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#e3eaf5] bg-white shadow-[0_8px_24px_rgba(10,20,50,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(10,20,50,0.12)]"
+            >
+              <a href={`/blogs/${post.slug}`} className="flex h-full flex-col">
+                <div className="relative aspect-[2] overflow-hidden bg-[linear-gradient(125deg,#dfe7fd_0%,#8eaeff_38%,#1a5cff_70%,#0a1432_100%)]">
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#06172b]/75 via-transparent to-transparent" />
+                  <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur">
+                    {post.category}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-4 right-4 grid h-9 w-9 place-items-center rounded-full bg-white/20 text-white backdrop-blur transition group-hover:bg-white/35"
+                  >
+                    <FiArrowUpRight />
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#8190a8]">
+                    <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                    <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[#c3cfe3]" />
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h3 className="mt-3 text-xl font-bold leading-snug text-[#0b1230] transition group-hover:text-[#1a5cff]">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[#526078]">
+                    {post.description}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[#1a5cff]">
+                    Read article <FiArrowRight aria-hidden="true" />
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))}
         </div>
       </section>
       <Footer />

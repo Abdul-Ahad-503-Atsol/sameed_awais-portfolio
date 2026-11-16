@@ -28,6 +28,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const shouldFloat = isScrolled;
+  const hasDarkBanner = pathname.startsWith("/projects/") || pathname.startsWith("/blogs/");
 
   const headerPosition = shouldFloat
     ? "fixed left-1/2 top-3 w-[calc(100%-1.5rem)] max-w-[1400px] -translate-x-1/2 rounded-full"
@@ -46,7 +47,7 @@ export default function Navbar() {
         href={pathname === "/" ? "#home" : "/#home"}
         onClick={() => setActive("Home")}
         className={`text-[clamp(1.5rem,2.1vw,2.15rem)] font-bold tracking-[-0.02em] ${
-          shouldFloat ? "text-white" : "text-[#0b1230]"
+          shouldFloat || hasDarkBanner ? "text-white" : "text-[#0b1230]"
         }`}
       >
         Sameed<span className="text-[#1a5cff]">.</span>
@@ -58,7 +59,7 @@ export default function Navbar() {
         className="ml-auto hidden items-center gap-3 xl:gap-4 lg:flex"
       >
         {NAV.map((item) => {
-          const isActive = pathname === "/blogs"
+          const isActive = pathname.startsWith("/blogs")
             ? item === "Blogs"
             : pathname.startsWith("/about")
               ? item === "About"
