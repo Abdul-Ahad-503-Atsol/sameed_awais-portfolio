@@ -26,9 +26,9 @@ export default function Reviews() {
         {testimonials.length > 0 ? (
           <div className="mt-9 grid items-stretch gap-4 lg:grid-cols-2">
             {testimonials.map((review) => (
-              <article key={`${review.name}-${review.project}`} className="grid min-h-[240px] grid-rows-[auto_minmax(0,1fr)_auto] rounded-[20px] border border-[#dfe7fd] bg-[#f1f3fb] p-6 lg:grid-rows-[auto_190px_auto]">
+              <article key={`${review.name}-${review.project}`} className="grid min-h-[140px] grid-rows-[auto_minmax(0,1fr)_auto] rounded-[20px] border border-[#dfe7fd] bg-[#f1f3fb] p-6 lg:grid-rows-[auto_110px_auto]">
                 <FaQuoteLeft aria-hidden="true" className="text-base text-[#1a5cff]" />
-                <blockquote className="mt-4 min-h-0 text-[13px] leading-[1.55] text-[#263957] sm:text-sm lg:h-[190px]">
+                <blockquote className="mt-4 min-h-0 text-[13px] leading-[1.55] text-[#263957] sm:text-sm lg:h-[110px]">
                   &ldquo;{review.quote}&rdquo;
                 </blockquote>
                 <div className="mt-5 border-t border-[#dfe7fd] pt-4">
