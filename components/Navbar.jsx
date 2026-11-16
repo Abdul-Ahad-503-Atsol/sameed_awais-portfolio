@@ -95,8 +95,8 @@ export default function Navbar() {
             <a
               key={item}
               href={item === "Blogs" ? "/blogs" : item === "About" ? "/about" : `${pathname === "/" ? "" : "/"}#${item.toLowerCase()}`}
-              target={item === "Blogs" ? "_blank" : undefined}
-              rel={item === "Blogs" ? "noopener noreferrer" : undefined}
+              // target={item === "Blogs" ? "_blank" : undefined}
+              // rel={item === "Blogs" ? "noopener noreferrer" : undefined}
               onClick={() => setActive(item)}
               className={`group relative isolate inline-flex items-center rounded-full px-2 py-2 text-[clamp(.8rem,1.065vw,1.1rem)] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:text-[#8eb3ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a1432] ${
                 isActive
