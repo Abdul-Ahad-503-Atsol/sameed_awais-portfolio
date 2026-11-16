@@ -293,9 +293,13 @@ export default function Projects({ showAll = false }) {
                 {project.description}
               </p>
 
-              <p className="mt-3 text-[11px] font-medium leading-relaxed text-[#64748b] sm:text-xs">
-                {project.tech.slice(0, 5).join(" · ")}
-              </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {project.tech.slice(0, 5).map((technology) => (
+                  <span key={technology} className="rounded-full border border-[#dce3ed] bg-white px-2.5 py-1 text-[10px] font-medium text-[#334155] sm:text-[11px]">
+                    {technology}
+                  </span>
+                ))}
+              </div>
             </div>
           </article>
         ))}
