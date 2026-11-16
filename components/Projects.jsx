@@ -1,6 +1,3 @@
- "use client";
-
-import { useMemo, useRef, useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Heading from "./Heading";
 
@@ -222,10 +219,6 @@ export const projects = [
 export const slugifyProject = (title) =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-const allCategories = [
-  ...new Set(projects.flatMap((project) => project.category))
-].sort((a, b) => a.localeCompare(b));
-
 function ProjectImage({ project, className = "" }) {
   return project.image ? (
     <img
@@ -239,14 +232,7 @@ function ProjectImage({ project, className = "" }) {
 }
 
 export default function Projects({ showAll = false }) {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const categoryRailRef = useRef(null);
-
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "All") return projects;
-    return projects.filter((project) => project.category.includes(activeFilter));
-  }, [activeFilter]);
-  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
+  const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
     <section id="projects" className={`mx-auto ${showAll ? "max-w-7xl" : "max-w-5xl"} px-5 py-20 lg:py-28`}>
@@ -254,55 +240,9 @@ export default function Projects({ showAll = false }) {
         {showAll ? <>All <span className="text-[#1a5cff]">projects</span></> : <>Selected <span className="text-[#1a5cff]">work</span></>}
       </Heading>
 
-      <p className="mb-7 max-w-2xl text-sm leading-relaxed text-[#64748b] sm:text-base">
+      <p className="mb-9 max-w-2xl text-sm leading-relaxed text-[#64748b] sm:text-base">
         A selection of digital products, platforms, and software systems across multiple industries.
       </p>
-
-      <div className="mb-9 rounded-2xl border border-[#e3eaf5] bg-white/80 p-2 shadow-[0_8px_28px_rgba(20,30,80,0.06)]">
-        <div className="flex items-center gap-2">
-        <button
-          type="button"
-          onClick={() => categoryRailRef.current?.scrollBy({ left: -260, behavior: "smooth" })}
-          aria-label="Scroll categories left"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#e3eaf5] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff]/30 hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
-        >
-          ‹
-        </button>
-
-        <div
-          ref={categoryRailRef}
-          className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto scroll-smooth px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {["All", ...allCategories].map((category) => {
-            const isActive = activeFilter === category;
-            return (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActiveFilter(category)}
-                aria-pressed={isActive}
-                className={`group inline-flex shrink-0 items-center whitespace-nowrap rounded-xl border px-4 py-2.5 text-xs font-semibold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 ${
-                  isActive
-                    ? "border-transparent bg-[#1a5cff] text-white shadow-[0_5px_14px_rgba(26,92,255,0.24)]"
-                    : "border-transparent bg-[#f3f6fc] text-[#526078] hover:border-[#d9e4fb] hover:bg-[#eaf0ff] hover:text-[#164ed1]"
-                }`}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
-
-        <button
-          type="button"
-          onClick={() => categoryRailRef.current?.scrollBy({ left: 260, behavior: "smooth" })}
-          aria-label="Scroll categories right"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#e3eaf5] bg-white text-lg font-bold text-[#1a5cff] shadow-sm transition hover:border-[#1a5cff]/30 hover:bg-[#eaf0ff] focus:outline-none focus:ring-2 focus:ring-[#1a5cff]"
-        >
-          ›
-        </button>
-        </div>
-      </div>
 
       <div className={`grid grid-cols-1 items-stretch gap-7 sm:grid-cols-2 ${showAll ? "xl:grid-cols-3" : "xl:grid-cols-2"}`}>
         {displayedProjects.map((project) => (
@@ -353,13 +293,9 @@ export default function Projects({ showAll = false }) {
                 {project.description}
               </p>
 
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {project.tech.slice(0, 5).map((technology) => (
-                  <span key={technology} className="rounded-full border border-[#dce3ed] bg-white px-2.5 py-1 text-[10px] font-medium text-[#334155] sm:text-[11px]">
-                    {technology}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-3 text-[11px] font-medium leading-relaxed text-[#64748b] sm:text-xs">
+                {project.tech.slice(0, 5).join(" · ")}
+              </p>
             </div>
           </article>
         ))}
