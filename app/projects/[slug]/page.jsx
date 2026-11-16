@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { FiArrowLeft } from "react-icons/fi";
 import Navbar from "../../../components/Navbar";
@@ -48,7 +49,16 @@ export default function ProjectDetailPage() {
       <section className="mx-auto max-w-[1400px] px-5 pb-16 sm:px-8 lg:pb-24">
         <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-[#e5eaf2] bg-[#0a1432] shadow-[0_16px_48px_rgba(10,20,50,0.16)]">
           {project.image ? (
-            <img src={project.image} alt={`${project.title} preview`} className="aspect-[1.9] w-full object-cover" />
+            <div className="relative aspect-[1.9] w-full">
+              <Image
+                src={project.image}
+                alt={`${project.title} preview`}
+                fill
+                priority
+                sizes="(min-width: 1400px) 1400px, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
           ) : (
             <div className="relative flex aspect-[1.9] w-full items-end overflow-hidden bg-[linear-gradient(125deg,#dfe7fd_0%,#8eaeff_38%,#1a5cff_70%,#0a1432_100%)] p-6 sm:p-10">
               <div className="absolute inset-0 bg-gradient-to-t from-[#06172b]/90 via-transparent to-transparent" />

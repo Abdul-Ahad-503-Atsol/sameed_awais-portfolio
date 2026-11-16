@@ -1,4 +1,5 @@
-﻿import { FaArrowRight } from "react-icons/fa";
+﻿import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
 import PageHero from "../../components/PageHero";
 import Projects, { projects } from "../../components/Projects";
 import { Footer } from "../../components/Sections";
@@ -20,6 +21,15 @@ function ProjectFan() {
           className={`absolute ${fanLayout[index]} overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_50px_rgba(3,12,32,0.45)] transition duration-300 hover:z-30 hover:-translate-y-1`}
         >
           <div className="relative aspect-[1.55] bg-[linear-gradient(125deg,#dfe7fd_0%,#8eaeff_38%,#1a5cff_70%,#0a1432_100%)]">
+            {project.image && (
+              <Image
+                src={project.image}
+                alt={`${project.title} preview`}
+                fill
+                sizes="(min-width: 640px) 300px, 64vw"
+                className="object-cover object-top"
+              />
+            )}
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#06172b]/90 via-[#06172b]/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-4">
               <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#a9c4ff]">

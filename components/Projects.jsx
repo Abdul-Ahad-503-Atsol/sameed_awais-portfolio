@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Heading from "./Heading";
 
 /*
  * Self-contained Projects section.
- * Images are intentionally left empty until the matching project screenshots are supplied.
- * Add an image later by setting image: "/projects/your-image.png".
+ * Screenshots live in /public/projects and are referenced as "/projects/file.png".
+ * Projects without an image fall back to the gradient placeholder.
  */
 
 export const projects = [
@@ -18,7 +19,7 @@ export const projects = [
       "Automated personalized outreach and intelligent lead management.",
       "Improved client engagement through AI-driven insights and real-time collaboration."
     ],
-    image: "",
+    image: "/projects/mezagent.png",
     live: "https://mezagent.com/"
   },
   {
@@ -31,7 +32,7 @@ export const projects = [
       "AI threat analysis and incident probability modeling.",
       "Predictive response analysis and interactive intelligence visualization."
     ],
-    image: ""
+    image: "/projects/advanced-situational-awareness.png"
   },
   {
     title: "WellmeAI – AI-Powered Health Platform",
@@ -43,7 +44,7 @@ export const projects = [
       "Scaled therapist expertise through AI voice and text experiences.",
       "Improved continuity of care through context-aware guidance and safety interventions."
     ],
-    image: "",
+    image: "/projects/wellmeai.jpg",
     live: "https://www.wellmeai.com/"
   },
   {
@@ -56,7 +57,7 @@ export const projects = [
       "Delivered 5x faster trading operations through automation.",
       "Simplified advanced trading strategies without requiring technical expertise."
     ],
-    image: "",
+    image: "/projects/armor-wallet.jpeg",
     live: "https://www.rootdata.com/projects/detail/Armor%20Wallet?k=MTQ3NDg%3D"
   },
   {
@@ -81,7 +82,7 @@ export const projects = [
       "Automated inventory, product, and pricing synchronization.",
       "Connected ERP/POS, courier, and payment platforms."
     ],
-    image: "",
+    image: "/projects/comverse.png",
     live: "https://comverseglobal.com/"
   },
   {
@@ -94,7 +95,7 @@ export const projects = [
       "Automated product and inventory synchronization.",
       "Streamlined order processing and vendor–merchant workflows."
     ],
-    image: "",
+    image: "/projects/dropesy.jpeg",
     live: "https://www.dropesy.com/"
   },
   {
@@ -107,7 +108,7 @@ export const projects = [
       "Streamlined talent discovery, job posting, and hiring.",
       "Integrated AI assistance, real-time communication, and escrow transactions."
     ],
-    image: "",
+    image: "/projects/elewa.jpeg",
     live: "https://elewa.ke/"
   },
   {
@@ -120,7 +121,7 @@ export const projects = [
       "Streamlined applications and profile matching.",
       "Supported secure payments and scalable cloud operations."
     ],
-    image: "",
+    image: "/projects/hire-a-fractional.png",
     live: "https://hireafractional.com/"
   },
   {
@@ -133,7 +134,7 @@ export const projects = [
       "Automated consignment number generation and shipment workflows.",
       "Simplified fulfillment reporting and order tracking."
     ],
-    image: "",
+    image: "/projects/leopards-courier.png",
     live: "https://www.leopardscourier.com/"
   },
   {
@@ -146,7 +147,7 @@ export const projects = [
       "Enabled administrators to manage content independently.",
       "Streamlined careers, product publishing, and editorial workflows."
     ],
-    image: "",
+    image: "/projects/magna-foodservice.png",
     live: "https://www.magnafoodservice.co.uk/"
   },
   {
@@ -159,7 +160,7 @@ export const projects = [
       "Centralized subscription and membership management.",
       "Streamlined gym access and visit tracking."
     ],
-    image: "",
+    image: "/projects/moufit.png",
     live: "https://www.mou.fit/"
   },
   {
@@ -172,7 +173,7 @@ export const projects = [
       "Enabled secure online purchases and payments.",
       "Streamlined product variants, inventory, and order management."
     ],
-    image: "",
+    image: "/projects/pcb-merchandise.png",
     live: "https://shop.pcb.com.pk/"
   },
   {
@@ -185,7 +186,7 @@ export const projects = [
       "Enabled AI call analysis and conversational intelligence.",
       "Provided actionable call analytics and appointment insights."
     ],
-    image: "",
+    image: "/projects/peerlogic.png",
     live: "https://www.peerlogic.com/"
   },
   {
@@ -198,7 +199,7 @@ export const projects = [
       "Enabled industry-specific coverage and automated eligibility assessment.",
       "Unified customer self-service, agent quoting, and policy management."
     ],
-    image: "",
+    image: "/projects/three-insurance.png",
     live: "https://threeinsurance.com/"
   },
   {
@@ -211,20 +212,82 @@ export const projects = [
       "Optimized large-scale tax data processing and reporting queries.",
       "Streamlined digital payments, receipts, notices, and administration."
     ],
-    image: "",
+    image: "/projects/secure-tax.png",
     live: "https://securetax.us/"
+  },
+  {
+    title: "ADSO Freight Management System",
+    category: ["Logistics", "Enterprise Software"],
+    description: "A centralized freight management system built for ADSO, bringing transportation operations, freight projects, user and HR management, company structure, and configurable freight settings into a single platform for a logistics organization operating across local and international movements.",
+    tech: ["ASP.NET Core 3.1", ".NET Core", "Microsoft SQL Database", "Microsoft Azure", "Azure Virtual Machines", "Git", "GitHub"],
+    highlights: [
+      "Centralized transport, freight project, HR, and company setup modules in one system.",
+      "Modeled multi-company, group, and branch hierarchy across users and employees.",
+      "Made freight types, attributes, contracts, and clauses configurable without code changes."
+    ],
+    image: "/projects/adso.png"
+  },
+  {
+    title: "Destinations",
+    category: ["Travel", "Mobile", "SaaS"],
+    description: "A digital tourism platform built with Daewoo Express to promote travel across Pakistan. It gives travelers route-based travel plans, points of interest, hotels, restaurants, and curated tours through Android and iOS applications backed by a centralized API.",
+    tech: ["Python", "Django", "Django REST Framework", "Angular 12", "Flutter", "MySQL", "Docker"],
+    highlights: [
+      "Generated personalized travel plans with journey duration and itinerary calculations.",
+      "Surfaced attractions, hotels, and restaurants along the traveler's route.",
+      "Served Android and iOS apps from a single centralized REST API backend."
+    ],
+    image: "/projects/destinations.png"
+  },
+  {
+    title: "Memo Cards",
+    category: ["AI", "EdTech"],
+    description: "An AI study platform built for client Jason Chan that turns PDFs and lecture notes into customizable flashcards and quizzes in seconds. A simple interface makes study material easy to generate, with personalized tutoring feedback to reinforce learning.",
+    tech: ["React", "Python", "Django", "JavaScript", "OpenAI API"],
+    highlights: [
+      "Generated flashcards and quizzes from PDFs and lecture notes in seconds.",
+      "Added personalized tutoring feedback to improve study outcomes.",
+      "Supported thousands of learners worldwide."
+    ],
+    image: "/projects/memo.jpeg"
+  },
+  {
+    title: "Narratize",
+    category: ["AI", "SaaS"],
+    description: "A generative AI content platform built for Narratize, a content marketing agency serving clients including Fortune 500 companies. I re-engineered the original no-code product onto a code-based platform and expanded it from 1–2 use cases to over 20 content creation workflows.",
+    tech: ["LangChain", "OpenAI API", "Anthropic", "DALL-E", "RAG", "Streamlit", "Python"],
+    highlights: [
+      "Scaled the platform from 1–2 use cases to 20+ content creation workflows.",
+      "Integrated multiple LLMs while maintaining content quality and accuracy.",
+      "Cut content production from hours to minutes, 50–100x faster depending on use case."
+    ],
+    image: "/projects/narratize.jpeg"
+  },
+  {
+    title: "NuriQ",
+    category: ["AI", "HealthTech"],
+    description: "An AI-powered healthcare companion built with founding doctors to transform how patients engage with medical visits. It captures real-time appointment conversations, transcribes and structures them, and generates personalized medical summaries that patients can share securely with family.",
+    tech: ["LangChain", "React", "Django", "OpenAI API", "Machine Learning"],
+    highlights: [
+      "Transcribed visits and generated structured, standardized medical summaries.",
+      "Delivered personalized health insights, follow-up care, and action items.",
+      "Built with end-to-end encryption and multilingual support."
+    ],
+    image: "/projects/nuriq.jpeg"
   },
 ];
 
 export const slugifyProject = (title) =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-function ProjectImage({ project, className = "" }) {
+function ProjectImage({ project, className = "", sizes = "(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" }) {
   return project.image ? (
-    <img
+    <Image
       src={project.image}
       alt={`${project.title} project preview`}
-      className={`${className} h-full w-full object-cover`}
+      fill
+      sizes={sizes}
+      className={`${className} object-cover object-top`}
     />
   ) : (
     <div aria-hidden="true" className={`${className} h-full w-full bg-[linear-gradient(125deg,#dfe7fd_0%,#8eaeff_38%,#1a5cff_70%,#0a1432_100%)]`} />
