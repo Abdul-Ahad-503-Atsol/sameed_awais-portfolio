@@ -1,5 +1,6 @@
 ﻿import Navbar from "../../components/Navbar";
 import Projects from "../../components/Projects";
+import { Footer } from "../../components/Sections";
 
 export default function ProjectsPage() {
   return (
@@ -12,6 +13,7 @@ export default function ProjectsPage() {
         </div>
       </section>
       <Projects showAll />
+      <Footer />
     </main>
   );
 }

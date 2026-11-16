@@ -26,7 +26,7 @@ export default function Navbar() {
     setTheme(savedTheme);
 
     const handleScroll = () => {
-      setIsScrolled(pathname === "/" && window.scrollY > 40);
+      setIsScrolled(window.scrollY > 40);
     };
 
     handleScroll();
@@ -47,7 +47,7 @@ export default function Navbar() {
     setTheme(nextTheme);
   }
 
-  const shouldFloat = pathname === "/" && isScrolled;
+  const shouldFloat = isScrolled;
   const isSecondaryPage = pathname !== "/";
 
   const headerPosition = shouldFloat
@@ -58,9 +58,7 @@ export default function Navbar() {
 
   const headerAppearance = shouldFloat
     ? "border border-white/10 bg-[#0a1432]/95 shadow-[0_12px_40px_rgba(10,20,50,0.24)] backdrop-blur-xl"
-    : pathname !== "/"
-      ? "border-b border-white/10 bg-[#0a1432]"
-      : "bg-transparent";
+    : "bg-transparent";
 
   const header = (
     <header

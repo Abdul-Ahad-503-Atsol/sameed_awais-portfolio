@@ -439,7 +439,7 @@ export function Experience() {
 
 export function Footer() {
   return (
-    <footer className="flex items-center justify-between px-6 py-8 text-sm text-[#4b5468] lg:px-12">
+    <footer className="flex items-center justify-between bg-[#f1f3fb] px-6 py-8 text-sm text-[#4b5468] lg:px-12">
       <p>
         &copy; {new Date().getFullYear()} Sameed Awais. All rights reserved.
       </p>
