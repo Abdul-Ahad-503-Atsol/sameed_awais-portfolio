@@ -52,7 +52,7 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="inline-flex h-[58px] min-w-[238px] items-center justify-center gap-3 rounded-xl border border-[#0b1230]/15 bg-white px-6 text-base font-semibold text-[#0b1230] shadow-[0_4px_14px_rgba(10,20,50,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1a5cff]/35 hover:bg-[#f7f9ff] hover:shadow-[0_12px_24px_rgba(10,20,50,0.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-4 dark:border-white/20 dark:bg-[#111c30] dark:text-white dark:hover:bg-[#17243a] sm:h-[62px] sm:min-w-[253px] sm:text-lg"
+              className="inline-flex h-[58px] min-w-[238px] items-center justify-center gap-3 rounded-xl border border-[#0b1230]/15 bg-white px-6 text-base font-semibold text-[#0b1230] shadow-[0_4px_14px_rgba(10,20,50,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1a5cff]/35 hover:bg-[#f7f9ff] hover:shadow-[0_12px_24px_rgba(10,20,50,0.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-4 sm:h-[62px] sm:min-w-[253px] sm:text-lg"
             >
               <FaRegCommentDots className="text-[1.25em]" /> Let&apos;s Talk
             </a>

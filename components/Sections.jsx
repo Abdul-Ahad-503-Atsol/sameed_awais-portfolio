@@ -216,10 +216,10 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="w-full bg-[#f1f3fb] py-12 transition-colors duration-300 dark:bg-[#101827] sm:py-16 lg:py-20"
+      className="w-full bg-[#f1f3fb] py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5">
-        <h2 className="mb-8 text-xl font-bold text-[#0b1230] md:text-2xl dark:text-white">
+        <h2 className="mb-8 text-xl font-bold text-[#0b1230] md:text-2xl">
           Technical Expertise
         </h2>
 
@@ -235,10 +235,10 @@ export function Skills() {
                   type="button"
                   onClick={() => setSelectedCategory(index)}
                   aria-pressed={isActive}
-                  className={`group flex min-h-[52px] w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 focus:ring-offset-[#f1f3fb] dark:focus:ring-offset-[#101827] ${
+                  className={`group flex min-h-[52px] w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1a5cff] focus:ring-offset-2 focus:ring-offset-[#f1f3fb] ${
                     isActive
-                      ? "bg-white text-[#0b1230] shadow-[0_8px_22px_rgba(20,40,90,0.10)] ring-1 ring-inset ring-[#1a5cff]/30 dark:bg-[#1C2A40] dark:text-white dark:shadow-[0_8px_22px_rgba(0,0,0,0.14)] dark:ring-[#3B82F6]/35"
-                      : "text-[#526078] hover:bg-white/70 hover:text-[#0b1230] dark:text-[#B8C4D8] dark:hover:bg-[#17263B] dark:hover:text-white"
+                      ? "bg-white text-[#0b1230] shadow-[0_8px_22px_rgba(20,40,90,0.10)] ring-1 ring-inset ring-[#1a5cff]/30"
+                      : "text-[#526078] hover:bg-white/70 hover:text-[#0b1230]"
                   }`}
                   aria-label={`Show ${category.title} skills`}
                 >
@@ -246,7 +246,7 @@ export function Skills() {
                     {category.title}
                   </span>
                   {isActive && (
-                    <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-[#1a5cff] shadow-[0_0_12px_rgba(26,92,255,0.35)] dark:bg-[#60A5FA] dark:shadow-[0_0_12px_rgba(96,165,250,0.5)]" />
+                    <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-[#1a5cff] shadow-[0_0_12px_rgba(26,92,255,0.35)]" />
                   )}
                 </button>
               );
@@ -255,23 +255,23 @@ export function Skills() {
 
           {/* SELECTED CATEGORY DETAILS — ALWAYS OPEN, NO MODAL */}
           <div
-            className="flex h-[560px] flex-col overflow-hidden rounded-3xl border border-[#dfe7fd] bg-gradient-to-br from-white via-white to-[#edf3ff] p-7 shadow-[0_12px_34px_rgba(20,40,90,0.08)] transition-colors duration-300 sm:h-[480px] sm:p-10 lg:h-[352px] dark:border-[#2B4566] dark:from-[#17263B] dark:via-[#15243A] dark:to-[#101D31] dark:shadow-[0_12px_34px_rgba(0,0,0,0.14)]"
+            className="flex h-[560px] flex-col overflow-hidden rounded-3xl border border-[#dfe7fd] bg-gradient-to-br from-white via-white to-[#edf3ff] p-7 shadow-[0_12px_34px_rgba(20,40,90,0.08)] sm:h-[480px] sm:p-10 lg:h-[352px]"
             aria-live="polite"
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a5cff] dark:text-[#60A5FA]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#1a5cff]">
               Category · {String(selectedCategory + 1).padStart(2, "0")} / {String(skillCategories.length).padStart(2, "0")}
             </p>
-            <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0b1230] sm:text-3xl dark:text-white">
+            <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0b1230] sm:text-3xl">
               {activeCategory.title}
             </h3>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#526078] sm:text-lg dark:text-[#B8C4D8]">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#526078] sm:text-lg">
               {activeCategory.description}
             </p>
             <div className="mt-7 flex min-h-0 flex-1 flex-wrap content-start gap-2.5 overflow-y-auto pr-2">
               {activeCategory.items.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-[#d7e3ff] bg-[#eaf0ff] px-4 py-2 text-xs font-semibold text-[#164ed1] transition duration-200 hover:border-[#1a5cff] hover:bg-[#dfe7fd] hover:text-[#0b1230] sm:text-sm dark:border-[#2B4566] dark:bg-[#1C2A40] dark:text-[#DCE7F7] dark:hover:border-[#3B82F6] dark:hover:bg-[#173B70] dark:hover:text-white"
+                  className="rounded-full border border-[#d7e3ff] bg-[#eaf0ff] px-4 py-2 text-xs font-semibold text-[#164ed1] transition duration-200 hover:border-[#1a5cff] hover:bg-[#dfe7fd] hover:text-[#0b1230] sm:text-sm"
                 >
                   {skill}
                 </span>

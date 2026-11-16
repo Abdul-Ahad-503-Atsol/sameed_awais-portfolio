@@ -1,4 +1,5 @@
-import Navbar from "../../components/Navbar";
+import { FaArrowRight } from "react-icons/fa";
+import PageHero from "../../components/PageHero";
 import { About, Footer } from "../../components/Sections";
 import Heading from "../../components/Heading";
 
@@ -26,18 +27,29 @@ const strengths = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f1f3fb]">
-      <section className="relative bg-[#0a1432] text-white">
-        <Navbar />
-        <div className="mx-auto flex min-h-[340px] max-w-6xl flex-col justify-end px-5 pb-14 pt-32 sm:px-8 lg:min-h-[390px] lg:pb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#8eb3ff]">A little about me</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-extrabold leading-tight sm:text-6xl">
-            Engineering ideas into <span className="text-[#1a5cff]">impact.</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#c0cce0] sm:text-lg">
-            I’m Sameed Awais, a software engineer and technical leader focused on building thoughtful, scalable digital products.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="A little about me"
+        title={<>Engineering ideas into <span className="text-[#1a5cff]">impact.</span></>}
+        intro="I&rsquo;m Sameed Awais, a software engineer and technical leader focused on building thoughtful, scalable digital products."
+        actions={
+          <>
+            <a
+              href="/#projects"
+              className="group inline-flex items-center gap-2 rounded-xl bg-[#1a5cff] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(26,92,255,0.28)] transition hover:-translate-y-0.5 hover:bg-[#174fe0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-2"
+            >
+              View my work
+              <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            <a
+              href="/#contact"
+              className="inline-flex items-center rounded-xl border border-[#0b1230]/15 bg-white px-6 py-3.5 text-sm font-semibold text-[#0b1230] shadow-[0_4px_14px_rgba(10,20,50,0.05)] transition hover:-translate-y-0.5 hover:border-[#1a5cff]/35 hover:bg-[#f7f9fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-2"
+            >
+              Get in touch
+            </a>
+          </>
+        }
+        meta={["Based in Lahore, Pakistan", "10+ years experience", "AI/ML · Full-stack"]}
+      />
 
       <About showPortrait />
 

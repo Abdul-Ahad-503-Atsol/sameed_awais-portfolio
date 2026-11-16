@@ -1,27 +1,57 @@
-import Navbar from "../../components/Navbar";
+import PageHero from "../../components/PageHero";
 import { Footer } from "../../components/Sections";
+
+const journalTopics = ["Engineering deep dives", "AI/ML and systems", "Product lessons"];
 
 export default function BlogsPage() {
   return (
     <main className="bg-white text-[#0b1230]">
-      <section className="relative isolate min-h-screen overflow-hidden bg-[#0a1432] text-white">
-        <Navbar />
-
-        <div className="relative z-10 flex min-h-screen items-center px-6 pb-16 pt-28 sm:px-10 lg:w-[55%] lg:px-[6.3%] lg:pb-0 lg:pt-16">
-          <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#dfe7fd] px-4 py-2 text-sm font-semibold text-[#0b1230]">
-              <span className="h-2 w-2 rounded-full bg-[#1a5cff]" />
-              Thoughts, learnings &amp; ideas
+      <PageHero
+        eyebrow="Thoughts, learnings & ideas"
+        title={<>Blogs<span className="text-[#1a5cff]">.</span></>}
+        intro="Articles on software engineering, AI/ML, system design, and building products."
+        actions={
+          <>
+            <a
+              href="/#home"
+              className="inline-flex items-center rounded-xl bg-[#1a5cff] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(26,92,255,0.28)] transition hover:-translate-y-0.5 hover:bg-[#174fe0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-2"
+            >
+              Back to portfolio
+            </a>
+            <a
+              href="/#contact"
+              className="inline-flex items-center rounded-xl border border-[#0b1230]/15 bg-white px-6 py-3.5 text-sm font-semibold text-[#0b1230] shadow-[0_4px_14px_rgba(10,20,50,0.05)] transition hover:-translate-y-0.5 hover:border-[#1a5cff]/35 hover:bg-[#f7f9fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5cff] focus-visible:ring-offset-2"
+            >
+              Get in touch
+            </a>
+          </>
+        }
+        meta={["Engineering", "AI/ML", "System design", "New posts soon"]}
+      >
+        <div className="relative mx-auto w-full max-w-[380px]">
+          <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-[#1a5cff]/20 blur-2xl" />
+          <div className="relative rotate-2 rounded-[1.75rem] border border-[#e3eaf5] bg-white p-7 text-[#0b1230] shadow-[0_24px_60px_rgba(3,12,32,0.45)]">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#eaf0ff] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1a5cff]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1a5cff]" />
+              Journal
             </span>
-            <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
-              Blogs<span className="text-[#1a5cff]">.</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
-              Articles on software engineering, AI/ML, system design, and building products.
+            <h2 className="mt-5 text-2xl font-extrabold leading-snug text-[#0b1230]">
+              Notes on building software that ships.
+            </h2>
+            <ul className="mt-5 space-y-3">
+              {journalTopics.map((topic) => (
+                <li key={topic} className="flex items-center gap-3 text-sm text-[#526078]">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#1a5cff]" />
+                  {topic}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 border-t border-[#dfe7fd] pt-4 text-xs font-semibold text-[#1a5cff]">
+              New articles are on the way
             </p>
           </div>
         </div>
-      </section>
+      </PageHero>
 
       <section className="min-h-[45vh] bg-white px-6 py-16 sm:px-10 lg:px-[12%] lg:py-24">
         <div className="mx-auto max-w-[1400px]">
